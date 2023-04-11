@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@600&family=Manrope:wght@300;400;700;800&display=swap');
+@import url('https://unpkg.com/@tailwindcss/custom-scrollbar');
 
 
 @tailwind base;
@@ -9,3 +10,4 @@ body {
     font-family: 'Manrope', sans-serif;
     font-weight: 400;
   }
+
