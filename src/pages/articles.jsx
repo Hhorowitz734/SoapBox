@@ -53,7 +53,7 @@ function Articles() {
       <Navbar option1="Articles" option2="Talk" option3="Profile" onclick1={() => toPage('articles')} />
       <div className="grid grid-cols-3">
       
-      <div id="articlesbar" className="max-h-screen scrollbar-thumb-gray-400 scrollbar-track-gray-300 scrollbar-thin col-span-2 border border-l-transparent border-t-transparent border-b-tranparent px-2 overflow-x-hidden overflow-y-scroll">
+      <div id="articlesbar" className="max-h-screen scrollbar-thumb-gray-400 scrollbar-track-gray-300 scrollbar-thin col-span-3 lg:col-span-2 border border-l-transparent border-t-transparent border-b-tranparent px-2 overflow-x-hidden overflow-y-scroll">
         <Cover />
         <Cover />
         <Cover />
@@ -63,7 +63,7 @@ function Articles() {
         <Cover />
       </div>
 
-        <div className="px-3 py-2 border border-t-transparent border-b-transparent border-l-transparent border-r-transparent">
+        <div className="px-3 py-2 border border-t-transparent border-b-transparent border-l-transparent border-r-transparent lg:block hidden">
           <h1 className="text-center text-2xl mb-1 border border-l-transparent border-r-transparent border-t-transparent ">Trends</h1>
           <Trend articleObjects={articlesTest} tagObjects={tagTest} userObjects={usersTest}/>
         </div>

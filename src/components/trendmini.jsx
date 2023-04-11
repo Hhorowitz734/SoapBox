@@ -24,7 +24,7 @@ function Articles({trendObjects}) {
     ));
   
     return (
-      <div className="border border-t-transparent border-l-transparent border-r-transparent">
+      <div className="border border-t-transparent border-l-transparent border-r-transparent overflow-y-scroll h-fit max-h-[33vh]">
         <h1 className="text-center text-xl font-bold ">Trending Articles</h1>
         {articleComponents}
       </div>
@@ -59,7 +59,7 @@ function Articles({trendObjects}) {
   
   function Tags({ trendObjects }) {
     return (
-      <div>
+      <div className="overflow-y-scroll h-fit max-h-[25vh]">
         <h1 className="text-center text-xl font-bold">Trending Tags</h1>
         <div className="flex flex-wrap">
             {trendObjects.map((tag) => (
@@ -90,7 +90,7 @@ function Articles({trendObjects}) {
 
   function Users({trendObjects}) {
     return (
-    <div className="mt-2 border border-b-transparent border-l-transparent border-r-transparent">
+    <div className="mt-2 border border-b-transparent border-l-transparent border-r-transparent overflow-y-scroll h-fit max-h-[33vh]">
         <h1 className="text-center text-xl font-bold">Trending Users</h1>
         {trendObjects.map((user, index) => (
             

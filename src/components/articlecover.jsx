@@ -6,7 +6,7 @@ import {BiShare} from "react-icons/bi"
 function Cover(){
 
     return (
-        <div className="ml-2 h-56 w-full border border-l-transparent border-t-transparent border-r-transparent flex overflow-hidden hover:bg-gray-200 transition duration-200 cursor-pointer">
+        <div className="ml-2 h-1/3 md:h-64 lg:h-56 w-full border border-l-transparent border-t-transparent border-r-transparent flex overflow-hidden hover:bg-gray-200 transition duration-200 cursor-pointer">
             <div>
                 <div className="flex items-center">
                     <h1 className="text-2xl mt-2">What America Gets Wrong About Gender Medicine </h1>
@@ -18,9 +18,16 @@ function Cover(){
                     <h1 className="m-2 font-bold">&middot;</h1>
                     <h1 className="mt-2">February 27, 2022</h1>
                     <h1 className="m-2 font-bold">&middot;</h1>
-                    <div className="bg-gray-300 border-transparent rounded-md h-1/2 px-2 cursor-pointer hover:bg-gray-500 transition duration-300"><h1>Transgender</h1></div>
-                    <div className="bg-gray-300 border-transparent rounded-md h-1/2 px-2 ml-2 cursor-pointer hover:bg-gray-500 transition duration-300"><h1>Civil Rights</h1></div>
-                    <div className="bg-gray-300 border-transparent rounded-md h-1/2 px-2 ml-2 cursor-pointer hover:bg-gray-500 transition duration-300"><h1>Dogknob</h1></div>
+                    <div class="hidden md:flex">
+                        <div class="bg-gray-300 border-transparent rounded-md h-1/2 px-2 cursor-pointer hover:bg-gray-500 transition duration-300 mb-2 lg:mb-0 lg:mr-2"><h1>Transgender</h1></div>
+                        <div class="bg-gray-300 border-transparent rounded-md h-1/2 px-2 cursor-pointer hover:bg-gray-500 transition duration-300 mb-2 lg:mb-0 lg:mr-2"><h1>Civil Rights</h1></div>
+                        <div class="bg-gray-300 border-transparent rounded-md h-1/2 px-2 cursor-pointer hover:bg-gray-500 transition duration-300 mb-2 lg:mb-0"><h1>Dogknob</h1></div>
+                    </div>
+                </div>
+                <div class="flex flex-wrap md:hidden lg:m-0 my-2">
+                    <div class="mx-1 w-fit bg-gray-300 border-transparent rounded-md h-1/2 px-2 cursor-pointer hover:bg-gray-500 transition duration-300 mb-2 lg:mb-0 lg:mr-2"><h1>Transgender</h1></div>
+                    <div class="mx-1 w-fit bg-gray-300 border-transparent rounded-md h-1/2 px-2 cursor-pointer hover:bg-gray-500 transition duration-300 mb-2 lg:mb-0 lg:mr-2"><h1>Civil Rights</h1></div>
+                    <div class="mx-1 w-fit bg-gray-300 border-transparent rounded-md h-1/2 px-2 cursor-pointer hover:bg-gray-500 transition duration-300 mb-2 lg:mb-0"><h1>Dogknob</h1></div>
                 </div>
                 <h1>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</h1>
             </div>
