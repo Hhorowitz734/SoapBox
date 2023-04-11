@@ -7,6 +7,7 @@ function Articles() {
     {title: "Brazil's Hyperactive Population Strategies", author: "John Doe"},
     {title: "Brazil's Hyperactive Population Strategies", author: "John Doe"},
     {title: "Brazil's Hyperactive Population Strategies", author: "John Doe"},
+    {title: "Brazil's Hyperactive Population Strategies", author: "John Doe"},
     {title: "Brazil's Hyperactive Population Strategies", author: "John Doe"}
   ]
 
@@ -37,6 +38,14 @@ function Articles() {
     { tag: "Criminal Justice", url: "https://example.com/criminal-justice", color: "rgba(0, 0, 192, " },
     { tag: "Education", url: "https://example.com/education", color: "rgba(192, 192, 0, " }
   ]
+
+  const usersTest = [
+    {name: "Benjamin Horowitz", img: "https://cdn.britannica.com/71/234471-050-093F4211/shiba-inu-dog-in-the-snow.jpg", score: 32000},
+    {name: "John Doe", img: "https://cdn.britannica.com/71/234471-050-093F4211/shiba-inu-dog-in-the-snow.jpg", score: 30000},
+    {name: "Zubayer Jones", img: "https://cdn.britannica.com/71/234471-050-093F4211/shiba-inu-dog-in-the-snow.jpg", score: 27000},
+    {name: "Chad Chadson", img: "https://cdn.britannica.com/71/234471-050-093F4211/shiba-inu-dog-in-the-snow.jpg", score: 5000},
+    {name: "Mario Jakeson", img: "https://cdn.britannica.com/71/234471-050-093F4211/shiba-inu-dog-in-the-snow.jpg", score: 3000}
+  ]
   
 
   return (
@@ -52,11 +61,11 @@ function Articles() {
         <Cover />
         <Cover />
         <Cover />
-    </div>
+      </div>
 
         <div className="px-3 py-2 border border-t-transparent border-b-transparent border-l-transparent border-r-transparent">
-          <h1 className="text-center text-2xl mb-1 border border-l-transparent border-r-transparent border-t-transparent">Trends</h1>
-          <Trend trendType="Articles" articleObjects={articlesTest} tagObjects={tagTest}/>
+          <h1 className="text-center text-2xl mb-1 border border-l-transparent border-r-transparent border-t-transparent ">Trends</h1>
+          <Trend articleObjects={articlesTest} tagObjects={tagTest} userObjects={usersTest}/>
         </div>
       </div>
       <div style={{height: '4rem'}}></div>
