@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from "react";
 
 //Controls Circles
 
-function Circle({ size, left, top, backgroundColor }){
+export function Circle({ size, left, top, backgroundColor }){
     return (
         <div
           className="absolute rounded-full"

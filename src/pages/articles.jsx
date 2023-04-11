@@ -1,8 +1,20 @@
 import Cover from "../components/articlecover";
+import AccountFloater from "../components/loginfloater";
 import Navbar from "../components/navbar";
 import Trend from "../components/trendmini";
 
+import { useState, useRef } from "react";
+
 function Articles() {
+
+  const toPage = (page) => {
+    window.location = `/${page}`;
+  }
+
+  //Handles state of login floater
+  const [floaterOpen, toggleFloater] = useState(false);
+
+
   const articlesTest = [
     {title: "Brazil's Hyperactive Population Strategies", author: "John Doe"},
     {title: "Brazil's Hyperactive Population Strategies", author: "John Doe"},
@@ -50,7 +62,12 @@ function Articles() {
 
   return (
     <div className="h-screen w-screen overflow-hidden">
-      <Navbar option1="Articles" option2="Talk" option3="Profile" onclick1={() => toPage('articles')} />
+      {floaterOpen && (
+        <div className="w-screen h-screen fixed bg-gray-200 bg-opacity-80 flex justify-center items-center" onClick = {(e) => {toggleFloater(false)}}>
+          <AccountFloater />
+        </div>
+      )}
+      <Navbar option1="Articles" option2="Talk" option3="Profile" onclick1={() => toPage('articles')} onclick3={() => toggleFloater(true)}/>
       <div className="grid grid-cols-3">
       
       <div id="articlesbar" className="max-h-screen scrollbar-thumb-gray-400 scrollbar-track-gray-300 scrollbar-thin col-span-3 lg:col-span-2 border border-l-transparent border-t-transparent border-b-tranparent px-2 overflow-x-hidden overflow-y-scroll">
