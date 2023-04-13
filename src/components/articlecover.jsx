@@ -14,6 +14,8 @@ function Cover(){
                     <BiShare className="m-2 mt-5 text-xl font-thin"/>
                 </div>
                 <div className="flex items-center">
+                <img src={"https://cdn.britannica.com/71/234471-050-093F4211/shiba-inu-dog-in-the-snow.jpg"} alt="Your image" className="h-8 mr-1 rounded-full" style={{ borderRadius: "50%" }} />
+                    <h1 className="m-2 font-bold">&middot;</h1>
                     <h1 className="mt-2 font-bold">John Doe</h1>
                     <h1 className="m-2 font-bold">&middot;</h1>
                     <h1 className="mt-2">February 27, 2022</h1>

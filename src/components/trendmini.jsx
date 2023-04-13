@@ -31,7 +31,7 @@ function Articles({trendObjects}) {
     );
   }
 
-  function Tag({ tagObject }) {
+  export function Tag({ tagObject }) {
     const normalOpacity = "0.25)";
     const hoverOpacity = "0.4)";
   

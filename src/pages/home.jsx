@@ -13,7 +13,7 @@ function Home(){
     }
     
     return(
-        <div className="h-screen w-screen relative overflow-hidden">
+        <div className="w-screen h-screen relative overflow-x-hidden">
             <HomeBackground />
             <Navbar option1 = "Articles" option2 = "Talk" option3 = "Profile" onclick1={() => toPage('articles')} onclick3={() => toPage('login')}/>
             <h1 className="text-8xl font-bold text-center justify-center mt-16">SoapBox</h1>
