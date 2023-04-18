@@ -17,11 +17,7 @@ import Articles from './pages/articles';
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
-  },
-  {
-    path: "/articles",
-    element: <Articles />
+    element: <Articles />,
   },
 ]);
 

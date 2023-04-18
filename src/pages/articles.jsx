@@ -67,7 +67,7 @@ function Articles() {
           <AccountFloater />
         </div>
       )}
-      <Navbar option1="Articles" option2="Talk" option3="Profile" onclick1={() => toPage('articles')} onclick3={() => toggleFloater(true)}/>
+      <Navbar option1="Articles" option2="Talk" option3="Profile" onclick1={() => toPage('/')} onclick3={() => toggleFloater(true)}/>
       <div className="grid grid-cols-3">
       
       <div id="articlesbar" className="max-h-screen scrollbar-thumb-gray-400 scrollbar-track-gray-300 scrollbar-thin col-span-3 lg:col-span-2 border border-l-transparent border-t-transparent border-b-tranparent px-2 overflow-x-hidden overflow-y-scroll">
