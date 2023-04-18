@@ -1,6 +1,6 @@
 //Component to create Login/Registration Floater
 import { app, firestore} from "../../firebase.js";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, setDoc, getDoc } from "firebase/firestore";
 import { getAuth, signInWithPopup, TwitterAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import { AiOutlineClose } from "react-icons/ai"
 
@@ -12,47 +12,48 @@ function signInWithApple(){
 
 
 function signInWithTwitter() {
-  
-  // Get the Firebase auth instance
+
   const auth = getAuth(app);
-
-  // Create a new TwitterAuthProvider instance
   const provider = new TwitterAuthProvider();
-
-  // Use the Firebase Auth SDK to sign in with Twitter
-  signInWithPopup(auth, provider)
-    .then((result) => {
-      // The user is signed in
-      const user = result.user;
-      console.log(user);
-    })
-    .catch((error) => {
-      // Handle errors here
-      console.log(error);
-    });
+  
+  signInWithPopupFunction(auth, provider);
 }
 
 function signInWithGoogle() {
   const auth = getAuth();
   const provider = new GoogleAuthProvider();
+  signInWithPopupFunction(auth, provider);
+}
+
+function signInWithPopupFunction(auth, provider){
+  
   signInWithPopup(auth, provider)
     .then((result) => {
       // Signed in
       const user = result.user;
       
-      // Create a new user document in the Firestore 'users' collection
       const userRef = doc(firestore, "users", user.uid);
-      const userData = {
-        name: user.displayName,
-        email: user.email,
-        photoUrl: user.photoURL,
-      };
-
-      setDoc(userRef, userData).then(() => {
-        console.log("User data added successfully!"); // log a success message if the data was added successfully
-      })
-      .catch((error) => {
-        console.error("Error adding user data:", error); // log an error message if there was an error adding the data
+      getDoc(userRef).then((docSnapshot) => {
+        if (docSnapshot.exists()) {
+          // Handle existing user
+          console.log("User data already exists!"); // log a message if user data already exists
+          const userData = docSnapshot.data();
+          console.log("User data:", userData); // log the user data to the console
+        } else {
+          // Create a new user document with the user's information
+          const userData = {
+            name: user.displayName,
+            email: user.email,
+            photoUrl: user.photoURL,
+          };
+          setDoc(userRef, userData).then(() => {
+            console.log("User data added successfully!"); // log a success message if the data was added successfully
+          }).catch((error) => {
+            console.error("Error adding user data:", error); // log an error message if there was an error adding the data
+          });
+        }
+      }).catch((error) => {
+        console.error("Error getting user document:", error); // log an error message if there was an error getting the user document
       });
     })
     .catch((error) => {
@@ -60,8 +61,8 @@ function signInWithGoogle() {
       const errorMessage = error.message;
       // Handle error
     });
-}
 
+}
 
 
 function SignInWithButton({ company, companyFunction }){
