@@ -14,6 +14,24 @@ function Articles() {
   //Handles state of login floater
   const [floaterOpen, toggleFloater] = useState(false);
 
+  //Handles logged in/logged out state of page
+  const [userDoc, SetUserDoc] = useState({name: "Log In"});
+
+  //Function to handle when user logs in
+  const handleLogIn = (userdoc) => {
+    SetUserDoc(userdoc);
+    toggleFloater(false);
+  }
+
+  //Function to handle when user clicks log in/profile button
+  const handleProfileBtnClick = (name) => {
+    if(name == "Log In"){
+      toggleFloater(true);
+    } else {
+      toPage('profile')
+    }
+  }
+
 
   const articlesTest = [
     {title: "Brazil's Hyperactive Population Strategies", author: "John Doe"},
@@ -64,10 +82,16 @@ function Articles() {
     <div className="h-screen w-screen overflow-hidden">
       {floaterOpen && (
         <div className="w-screen h-screen fixed bg-gray-200 bg-opacity-80 flex justify-center items-center" onClick = {(e) => {toggleFloater(false)}}>
-          <AccountFloater />
+          <AccountFloater toggleLoginModal={handleLogIn}/>
         </div>
       )}
-      <Navbar option1="Articles" option2="Talk" option3="Profile" onclick1={() => toPage('/')} onclick3={() => toggleFloater(true)}/>
+    <Navbar 
+      option1="Articles" 
+      option2="Talk" 
+      option3={`${userDoc.name}`} 
+      onclick1={() => toPage('/')} 
+      onclick3={() => handleProfileBtnClick(userDoc.name)}
+    />
       <div className="grid grid-cols-3">
       
       <div id="articlesbar" className="max-h-screen scrollbar-thumb-gray-400 scrollbar-track-gray-300 scrollbar-thin col-span-3 lg:col-span-2 border border-l-transparent border-t-transparent border-b-tranparent px-2 overflow-x-hidden overflow-y-scroll">

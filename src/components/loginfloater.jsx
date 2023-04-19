@@ -6,23 +6,23 @@ import { AiOutlineClose } from "react-icons/ai"
 
 
 //Code to handle signing in with different providers
-const signInWithApple = () => {
+const signInWithApple = (toggleLoginModal) => {
   console.log('Fill this out later');
   //FILL THIS IN LATER
 }
 
-const signInWithTwitter = () => {
+const signInWithTwitter = (toggleLoginModal) => {
   const provider = new TwitterAuthProvider();
-  handleSignIn(provider);
+  handleSignIn(provider, toggleLoginModal);
 }
 
-const signInWithGoogle = () => {
+const signInWithGoogle = (toggleLoginModal) => {
   const provider = new GoogleAuthProvider();
-  handleSignIn(provider);
+  handleSignIn(provider, toggleLoginModal);
 }
 
 
-function handleSignIn(provider) {
+function handleSignIn(provider, toggleLoginModal) {
 
   //Creates a popup for the given provider
   const auth = getAuth(app);
@@ -38,8 +38,7 @@ function handleSignIn(provider) {
         .then((doc) => {
           
           if (doc.exists()) { //CASE IF USER ALREADY EXISTS
-            console.log("User already exists in Firestore!");
-            // Do something else here if the user document already exists
+            toggleLoginModal(doc.data());
           } 
           
           else { //CASE IF USER DOES NOT ALREADY EXIST
@@ -86,7 +85,7 @@ function SignInWithButton({ company, companyFunction }){
 )
 }
 
-function AccountFloater() {
+function AccountFloater({toggleLoginModal}) {
 
   const companies = [
     {name: "Google", logo: "https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"},
@@ -108,9 +107,9 @@ function AccountFloater() {
           </div>
 
           <div class="flex flex-col items-center h-full">
-            <SignInWithButton company = {companies[0]} companyFunction={signInWithGoogle} />
-            <SignInWithButton company = {companies[1]} companyFunction={signInWithTwitter} />
-            <SignInWithButton company = {companies[2]} companyFunction={signInWithApple} />
+            <SignInWithButton company = {companies[0]} companyFunction={() => {signInWithGoogle(toggleLoginModal)}} />
+            <SignInWithButton company = {companies[1]} companyFunction={() => {signInWithTwitter(toggleLoginModal)}} />
+            <SignInWithButton company = {companies[2]} companyFunction={() => {signInWithApple(toggleLoginModal)}} />
           </div>
         </div>
     );
