@@ -1,65 +1,76 @@
 //Component to create Login/Registration Floater
 import { app, firestore} from "../../firebase.js";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, setDoc, getDoc } from "firebase/firestore";
 import { getAuth, signInWithPopup, TwitterAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import { AiOutlineClose } from "react-icons/ai"
 
 
-function signInWithApple(){
+//Code to handle signing in with different providers
+const signInWithApple = () => {
   console.log('Fill this out later');
   //FILL THIS IN LATER
 }
 
-
-function signInWithTwitter() {
-  
-  // Get the Firebase auth instance
-  const auth = getAuth(app);
-
-  // Create a new TwitterAuthProvider instance
+const signInWithTwitter = () => {
   const provider = new TwitterAuthProvider();
-
-  // Use the Firebase Auth SDK to sign in with Twitter
-  signInWithPopup(auth, provider)
-    .then((result) => {
-      // The user is signed in
-      const user = result.user;
-      console.log(user);
-    })
-    .catch((error) => {
-      // Handle errors here
-      console.log(error);
-    });
+  handleSignIn(provider);
 }
 
-function signInWithGoogle() {
-  const auth = getAuth();
+const signInWithGoogle = () => {
   const provider = new GoogleAuthProvider();
-  signInWithPopup(auth, provider)
-    .then((result) => {
-      // Signed in
-      const user = result.user;
-      
-      // Create a new user document in the Firestore 'users' collection
-      const userRef = doc(firestore, "users", user.uid);
-      const userData = {
-        name: user.displayName,
-        email: user.email,
-        photoUrl: user.photoURL,
-      };
+  handleSignIn(provider);
+}
 
-      setDoc(userRef, userData).then(() => {
-        console.log("User data added successfully!"); // log a success message if the data was added successfully
-      })
-      .catch((error) => {
-        console.error("Error adding user data:", error); // log an error message if there was an error adding the data
-      });
+
+function handleSignIn(provider) {
+
+  //Creates a popup for the given provider
+  const auth = getAuth(app);
+  signInWithPopup(auth, provider)
+    
+    .then((result) => {
+
+      const user = result.user;
+
+      // Check if a user document already exists in the Firestore 'users' collection
+      const userRef = doc(firestore, "users", user.uid);
+      getDoc(userRef)
+        .then((doc) => {
+          
+          if (doc.exists()) { //CASE IF USER ALREADY EXISTS
+            console.log("User already exists in Firestore!");
+            // Do something else here if the user document already exists
+          } 
+          
+          else { //CASE IF USER DOES NOT ALREADY EXIST
+            // Create a new user document in the Firestore 'users' collection
+            const userData = {
+              name: user.displayName,
+              email: user.email,
+              photoUrl: user.photoURL,
+            };
+            setDoc(userRef, userData)
+              .then(() => {
+                console.log("User data added successfully!"); // log a success message if the data was added successfully
+              })
+              .catch((error) => {
+                console.error("Error adding user data:", error); // log an error message if there was an error adding the data
+              });
+          }
+
+        })
+
+        .catch((error) => { //CASE THAT THERE IS AN EXTERNAL ERROR
+          console.error("Error checking for user document:", error);
+        });
+
     })
-    .catch((error) => {
+
+    .catch((error) => { //CASE THAT THERE IS AN EXTERNAL ERROR
       const errorCode = error.code;
       const errorMessage = error.message;
-      // Handle error
     });
+    
 }
 
 
