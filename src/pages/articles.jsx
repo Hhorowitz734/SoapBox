@@ -28,7 +28,7 @@ function Articles() {
     if(name == "Log In"){
       toggleFloater(true);
     } else {
-      toPage('profile')
+      toPage(`user/${name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-zA-Z0-9-]/g, '')}`)
     }
   }
 
