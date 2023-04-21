@@ -2,6 +2,7 @@ import Cover from "../components/articlecover";
 import AccountFloater from "../components/loginfloater";
 import Navbar from "../components/navbar";
 import Trend from "../components/trendmini";
+import Validate from "../components/validate";
 
 import { useState, useRef } from "react";
 
@@ -77,14 +78,20 @@ function Articles() {
     {name: "Mario Jakeson", img: "https://cdn.britannica.com/71/234471-050-093F4211/shiba-inu-dog-in-the-snow.jpg", score: 3000}
   ]
   
+  //TOKEN HERE
+  const TOKEN = "sdfsd";
 
   return (
     <div className="h-screen w-screen overflow-hidden">
+
+      <Validate token = {TOKEN} setUserDoc={SetUserDoc}/>
+
       {floaterOpen && (
         <div className="w-screen h-screen fixed bg-gray-200 bg-opacity-80 flex justify-center items-center" onClick = {(e) => {toggleFloater(false)}}>
           <AccountFloater toggleLoginModal={handleLogIn}/>
         </div>
       )}
+
     <Navbar 
       option1="Articles" 
       option2="Talk" 
@@ -92,24 +99,28 @@ function Articles() {
       onclick1={() => toPage('/')} 
       onclick3={() => handleProfileBtnClick(userDoc.name)}
     />
+
       <div className="grid grid-cols-3">
       
-      <div id="articlesbar" className="max-h-screen scrollbar-thumb-gray-400 scrollbar-track-gray-300 scrollbar-thin col-span-3 lg:col-span-2 border border-l-transparent border-t-transparent border-b-tranparent px-2 overflow-x-hidden overflow-y-scroll">
-        <Cover />
-        <Cover />
-        <Cover />
-        <Cover />
-        <Cover />
-        <Cover />
-        <Cover />
-      </div>
-
-        <div className="px-3 py-2 border border-t-transparent border-b-transparent border-l-transparent border-r-transparent lg:block hidden">
-          <h1 className="text-center text-2xl mb-1 border border-l-transparent border-r-transparent border-t-transparent ">Trends</h1>
-          <Trend articleObjects={articlesTest} tagObjects={tagTest} userObjects={usersTest}/>
+        <div id="articlesbar" className="max-h-screen scrollbar-thumb-gray-400 scrollbar-track-gray-300 scrollbar-thin col-span-3 lg:col-span-2 border border-l-transparent border-t-transparent border-b-tranparent px-2 overflow-x-hidden overflow-y-scroll">
+          <Cover />
+          <Cover />
+          <Cover />
+          <Cover />
+          <Cover />
+          <Cover />
+          <Cover />
         </div>
-      </div>
+
+          <div className="px-3 py-2 border border-t-transparent border-b-transparent border-l-transparent border-r-transparent lg:block hidden">
+            <h1 className="text-center text-2xl mb-1 border border-l-transparent border-r-transparent border-t-transparent ">Trends</h1>
+            <Trend articleObjects={articlesTest} tagObjects={tagTest} userObjects={usersTest}/>
+          </div>
+
+        </div>
+
       <div style={{height: '4rem'}}></div>
+
     </div>
   );
 }
