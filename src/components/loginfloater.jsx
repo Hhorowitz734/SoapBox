@@ -21,6 +21,23 @@ const signInWithGoogle = (toggleLoginModal) => {
   handleSignIn(provider, toggleLoginModal);
 }
 
+async function getToken(userdoc){
+  
+  console.log(userdoc)
+
+  await fetch('http://localhost:9998/encrypt', {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(userdoc)
+        })
+        .then(response => response.json())
+        .then(data => {
+          document.cookie = `userToken=${data.token}; expires=${new Date(Date.now() + 86400000).toUTCString()}; path=/`;
+        })
+        .catch(error => console.error(error));
+}
 
 function handleSignIn(provider, toggleLoginModal) {
 
@@ -38,6 +55,7 @@ function handleSignIn(provider, toggleLoginModal) {
         .then((doc) => {
           
           if (doc.exists()) { //CASE IF USER ALREADY EXISTS
+            getToken(doc.data());
             toggleLoginModal(doc.data());
           } 
           

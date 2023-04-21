@@ -84,7 +84,7 @@ function Articles() {
   return (
     <div className="h-screen w-screen overflow-hidden">
 
-      <Validate token = {TOKEN} setUserDoc={SetUserDoc}/>
+      <Validate setUserDoc={SetUserDoc}/>
 
       {floaterOpen && (
         <div className="w-screen h-screen fixed bg-gray-200 bg-opacity-80 flex justify-center items-center" onClick = {(e) => {toggleFloater(false)}}>

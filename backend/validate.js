@@ -2,13 +2,14 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import jwt from 'jsonwebtoken';
 import cors from 'cors';
+import admin from 'firebase-admin'
 
 const app = express();
 const port = 9998;
 
 
 // Use bodyParser middleware to parse incoming requests with JSON payloads
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: '10mb' }));
 
 app.use(cors());
 
@@ -16,26 +17,24 @@ app.use(cors());
 // Secret key to sign JWT tokens
 import { secretKey } from '../config.js';
 
-// POST request to encrypt the "user" object
-app.post('/encrypt', (req, res) => {
-  const user = req.body.user;
-
-  // Generate a JWT token with the "user" object as the payload
-  const token = jwt.sign(user, secretKey);
-
-  // Send the token back in the response
-  res.json({ token });
-});
-
 // POST request to decrypt the "user" object
-app.post('/decrypt', (req, res) => {
+app.post('/decrypt', async (req, res) => {
   const token = req.body.token;
   
+  const user = jwt.verify(token, secretKey);
 
-  // Verify the JWT token and retrieve the payload (i.e., the "user" object)
-  console.log(token);
-  res.json({status: 'ok', user: {name: "hi"}})
+  res.json({ status: 'ok', user: user});
 });
+
+app.post('/encrypt', async (req, res) => {
+
+  const user = req.body;
+
+  const token = jwt.sign(user, secretKey);
+
+  res.json({status: 'ok', token: token})
+
+})
 
 // Start the server
 app.listen(port, () => {
