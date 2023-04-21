@@ -94,9 +94,10 @@ function Articles() {
 
     <Navbar 
       option1="Articles" 
-      option2="Talk" 
+      option2="Write" 
       option3={`${userDoc.name}`} 
       onclick1={() => toPage('/')} 
+      onclick2={() => toPage('write')}
       onclick3={() => handleProfileBtnClick(userDoc.name)}
     />
 

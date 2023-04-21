@@ -8,7 +8,9 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+
 import Articles from './pages/articles';
+import Write from './pages/write';
 
 //Importing Functions
 import { getAllUsers } from '../backend/users';
@@ -18,6 +20,10 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Articles />,
+  },
+  {
+    path: "/write",
+    element: <Write />
   },
   ...users.map((user, index) => ({
     path: `/user/${user.name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-zA-Z0-9-]/g, '')}`,

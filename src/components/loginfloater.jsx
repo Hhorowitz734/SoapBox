@@ -114,7 +114,6 @@ function AccountFloater({toggleLoginModal}) {
 
     return (
         <div className="w-2/3 md:w-1/3 h-5/6 bg-white opacity-full overflow-hidden shadow-xl relative" onClick = {(e) => {e.stopPropagation()}}>
-          <AiOutlineClose className="text-2xl absolute top-0 right-0 mt-5 mr-5 cursor-pointer" />
           <div className="flex text-center w-full">
             <h1 className="text-4xl my-16 w-full hidden md:block">
               Get on <span className="font-bold">your</span> SoapBox
